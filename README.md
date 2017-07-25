@@ -2,7 +2,7 @@
 
 A `<StickyHeaderFooterScrollView>` wrapper that
 
-- Takes a ScrollView-like component
+- Takes any component and make it scrollable
 - Takes a header and/or a footer and makes it sticky
 - Works on iOS and Android
 
