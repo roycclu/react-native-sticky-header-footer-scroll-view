@@ -3,25 +3,23 @@
 A `<StickyHeaderFooterScrollView>` wrapper that
 
 - Takes any component and make it scrollable
-- Takes a header and/or a footer and makes it sticky
+- Takes a header/footer and makes it sticky
 - Works on iOS and Android
 
 ## Add it to your project
 
 iOS and Android
 
-run `yarn add react-native-sticky-header-footer-scroll-view`
+`yarn add react-native-sticky-header-footer-scroll-view`
 
 or
 
-run `npm install react-native-sticky-header-footer-scroll-view --save`
+`npm install react-native-sticky-header-footer-scroll-view --save`
 
 Then:
 
-- Whenever you want to use it within React code you can: `import
-StickyHeaderFooterScrollView from 'react-native-sticky-header-footer-scroll-view';`
-
-## Demo
+- Whenever you want to use it within React code you can:
+`import StickyHeaderFooterScrollView from 'react-native-sticky-header-footer-scroll-view';`
 
 ## Basic Usage
 
@@ -33,23 +31,30 @@ render() {
   return (
     <StickyHeaderFooterScrollView
       renderStickyHeader={() => (
-        <View style={{ height: 50, flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'white', borderBottomWidth: 1, borderBottomColor: '#ccc' }}>
+        <View style={...}>
           <Text>{`I'm a sticky header`}</Text>
         </View>
       )}
       renderStickyFooter={() => (
-        <View style={{ height: 50, flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'white', borderTopWidth: 1, borderTopColor: '#ccc'  }}>
+        <View style={...}>
           <Text>{`I'm a sticky footer`}</Text>
         </View>
       )}
     >
-      <ScrollView style={{ height: 1200, backgroundColor: '#eee' }}>
+      <View style={{ height: 1200, backgroundColor: '#eee' }}>
         <Text>Scroll Me</Text>
-      </ScrollView>
+      </View>
     </StickyHeaderFooterScrollView>
   )
 }
 ```
+
+| Prop | Description | Default |
+|---|---|---|
+|**`renderStickyHeader`**|A renderable function for the sticky header. |`null`|
+|**`renderStickyFooter`**|A renderable function for the sticky footer. |`null`|
+|**`contentBackgroundColor`**|Background color of the main component. |`transparent`|
+|**`contentContainerStyle`**|Any style prop to pass to the body. |`null`|
 
 ## Example
 
