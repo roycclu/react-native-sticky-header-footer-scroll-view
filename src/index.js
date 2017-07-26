@@ -2,7 +2,7 @@
  * @Author: Roy Lu 卢骋震 <roycclu>
  * @Date:   2017-05-21T11:55:17+08:00
  * @Last modified by:   roycclu
- * @Last modified time: 2017-07-25T11:42:02+08:00
+ * @Last modified time: 2017-07-26T23:27:18+08:00
  */
 
 
@@ -29,6 +29,7 @@ class StickyHeaderFooterScrollView extends Component {
     super(props);
     this._bodyOffsetTop = 0;
     this._bodyHeight = 0;
+    this._footerSpacerHeight = 0;
     this._bodyOffsetBottom = 0;
   }
 
@@ -105,8 +106,15 @@ class StickyHeaderFooterScrollView extends Component {
         ref={ref => (this._bodyComponent = ref)}
         onLayout={e => {
           const { nativeEvent: { layout: { height } } } = e;
-          if (this._bodyHeight !== height) {
-            this._bodyHeight = height;
+          const footerSpacerHeight = Math.max(
+            0,
+            window.height - this._bodyOffsetBottom - this._bodyOffsetTop - height
+          );
+          if (this._footerSpacerHeight != footerSpacerHeight) {
+            this._footerSpacerComponent.setNativeProps({
+              style: { height: footerSpacerHeight },
+            });
+            this._footerSpacerHeight = footerSpacerHeight
           }
         }}
       >
@@ -137,15 +145,6 @@ class StickyHeaderFooterScrollView extends Component {
         ]}
         onLayout={e => {
           const { nativeEvent: { layout: { height } } } = e;
-          if (this._bodyHeight < (window.height - height - this._bodyOffsetTop)) {
-            const footerSpacerHeight = Math.max(
-              0,
-              window.height - height - this._bodyOffsetTop
-            );
-            this._footerSpacerComponent.setNativeProps({
-              style: { height: footerSpacerHeight },
-            });
-          }
           if (this._bodyOffsetBottom !== height) {
             this._bodyComponent.setNativeProps({
               style: { marginBottom: height },

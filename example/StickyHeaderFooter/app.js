@@ -2,7 +2,7 @@
  * @Author: Roy Lu 卢骋震 <roycclu>
  * @Date:   2017-07-24T18:38:04+08:00
  * @Last modified by:   roycclu
- * @Last modified time: 2017-07-25T11:44:37+08:00
+ * @Last modified time: 2017-07-26T23:27:01+08:00
  */
 
 
@@ -26,19 +26,19 @@ class App extends Component {
     return (
       <StickyHeaderFooterScrollView
         renderStickyHeader={() => (
-          <View style={{ height: 50, flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'white', borderBottomWidth: 1, borderBottomColor: '#ccc' }}>
-            <Text>{`I'm a sticky header`}</Text>
+          <View style={{ height: 80, flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#223A5E', borderBottomWidth: 1, borderBottomColor: '#ccc' }}>
+            <Text style={{color: 'white', fontSize: 20}}>{`Sticky header`}</Text>
           </View>
         )}
         renderStickyFooter={() => (
-          <View style={{ height: 50, flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'white', borderTopWidth: 1, borderTopColor: '#ccc'  }}>
-            <Text>{`I'm a sticky footer`}</Text>
+          <View style={{ height: 60, flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#223A5E', borderTopWidth: 1, borderTopColor: '#ccc'  }}>
+            <Text style={{color: 'white', fontSize: 18}}>{`Sticky footer`}</Text>
           </View>
         )}
       >
-        <ScrollView style={{ height: 1200, backgroundColor: '#eee' }}>
-          <Text>Scroll Me</Text>
-        </ScrollView>
+        <View style={{ height: 600, backgroundColor: '#eee', justifyContent: 'center', alignItems: 'center' }}>
+          <Text style={{fontSize: 18}}>View made scrollable</Text>
+        </View>
       </StickyHeaderFooterScrollView>
     )
   }
