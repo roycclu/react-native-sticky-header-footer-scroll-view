@@ -19,7 +19,12 @@ or
 Then:
 
 - Whenever you want to use it within React code you can:
+
 `import StickyHeaderFooterScrollView from 'react-native-sticky-header-footer-scroll-view';`
+
+## Demo
+
+![](./example/example.png)
 
 ## Basic Usage
 
@@ -42,7 +47,7 @@ render() {
       )}
     >
       <View style={{ height: 1200, backgroundColor: '#eee' }}>
-        <Text>Scroll Me</Text>
+        <Text>View made scrollable</Text>
       </View>
     </StickyHeaderFooterScrollView>
   )
@@ -65,3 +70,10 @@ render() {
 `npm start`
 
 `react-native run-ios` or `react-native run-android`
+
+## Latest changes
+
+### 2.0.4
+
+- Fixes an issue with footer spacer
+- Fixes a bug in the example
