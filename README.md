@@ -24,7 +24,7 @@ Then:
 
 ## Demo
 
-![](./example/example.png)
+![](https://user-images.githubusercontent.com/16176418/28650265-28fb3070-72ad-11e7-8ab5-893c2eae9797.png)
 
 ## Basic Usage
 
