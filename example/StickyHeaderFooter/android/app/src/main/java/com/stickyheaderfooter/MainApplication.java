@@ -1,4 +1,4 @@
-package com.fixedheaderfooter;
+package com.stickyheaderfooter;
 
 import android.app.Application;
 

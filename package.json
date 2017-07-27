@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/roycclu/react-native-fixed-header-scroll-view.git"
+    "url": "https://github.com/roycclu/react-native-sticky-header-footer-scroll-view.git"
   },
   "keywords": [
     "react",
@@ -21,7 +21,7 @@
   "author": "Roy Lu",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/roycclu/react-native-fixed-header-scroll-view/issues"
+    "url": "https://github.com/roycclu/react-native-sticky-header-footer-scroll-view/issues"
   },
-  "homepage": "https://github.com/roycclu/react-native-fixed-header-scroll-view"
+  "homepage": "https://github.com/roycclu/react-native-sticky-header-footer-scroll-view"
 }
