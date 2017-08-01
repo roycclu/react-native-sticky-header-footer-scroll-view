@@ -35,6 +35,7 @@ class App extends Component {
             <Text style={{color: 'white', fontSize: 18}}>{`Sticky footer`}</Text>
           </View>
         )}
+        makeScrollable={true}
       >
         <View style={{ height: 600, backgroundColor: '#eee', justifyContent: 'center', alignItems: 'center' }}>
           <Text style={{fontSize: 18}}>View made scrollable</Text>

@@ -37,7 +37,7 @@ class StickyHeaderFooterScrollView extends Component {
     const {
       renderStickyHeader,
       renderStickyFooter,
-      makeScrollable,
+      wrapWithScrollView,
       contentBackgroundColor,
       contentContainerStyle,
       children,
@@ -45,7 +45,7 @@ class StickyHeaderFooterScrollView extends Component {
 
     const stickyHeader = this._renderStickyHeader(renderStickyHeader, {});
 
-    const scrollElement = makeScrollable ? <ScrollView {...this.props} /> : <View {...this.props} />;
+    const scrollElement = wrapWithScrollView ? <ScrollView {...this.props} /> : <View {...this.props} />;
 
     const bodyComponent = this._wrapChildren(children, {});
 
@@ -165,7 +165,7 @@ StickyHeaderFooterScrollView.propTypes = propTypes;
 StickyHeaderFooterScrollView.defaultProps = {
   renderStickyHeader: null,
   renderStickyFooter: null,
-  makeScrollable: false,
+  wrapWithScrollView: false,
   contentContainerStyle: null,
   contentBackgroundColor: 'transparent',
 };
