@@ -1,6 +1,6 @@
 {
   "name": "react-native-sticky-header-footer-scroll-view",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Sticky header and footer to any component and make it scrollable.",
   "main": "src/index.js",
   "repository": {
