@@ -2,8 +2,9 @@
 
 A `<StickyHeaderFooterScrollView>` wrapper that
 
-- Takes any component and make it scrollable
-- Takes a header/footer and makes it sticky
+- Takes a scrollview or listview
+- Or any component and make it scrollable
+- Takes a header and/or a footer and make them sticky
 - Works on iOS and Android
 
 ## Add it to your project
@@ -60,6 +61,7 @@ render() {
 |**`renderStickyFooter`**|A renderable function for the sticky footer. |`null`|
 |**`contentBackgroundColor`**|Background color of the main component. |`transparent`|
 |**`contentContainerStyle`**|Any style prop to pass to the body. |`null`|
+|**`makeScrollable`**|Set true to make the component scrollable. (Do not set true if the input is a listview or flatlist) |`false`|
 
 ## Example
 
@@ -72,6 +74,10 @@ render() {
 `react-native run-ios` or `react-native run-android`
 
 ## Latest changes
+
+### 2.0.7
+
+- Fixes an issue to work with listview
 
 ### 2.0.4
 

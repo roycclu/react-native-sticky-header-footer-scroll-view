@@ -5,8 +5,6 @@
  * @Last modified time: 2017-07-26T23:27:18+08:00
  */
 
-
-
 import React, { Component } from 'react';
 import { Dimensions, View, ViewPropTypes, ScrollView } from 'react-native';
 
@@ -45,25 +43,21 @@ class StickyHeaderFooterScrollView extends Component {
 
     const stickyHeader = this._renderStickyHeader(renderStickyHeader, {});
 
-    const scrollElement = makeScrollable ? <ScrollView {...this.props} /> : <View {...this.props} />;
+    const scrollElement = makeScrollable
+      ? <ScrollView {...this.props} />
+      : <View {...this.props} />;
 
     const bodyComponent = this._wrapChildren(children, {});
 
-    const footerSpacer = this._renderFooterSpacer({ contentBackgroundColor });
+    const footerSpacer = makeScrollable
+      ? this._renderFooterSpacer({ contentBackgroundColor })
+      : <View />;
 
     const stickyFooter = this._renderStickyFooter(renderStickyFooter, {});
 
     return (
       <View>
-        {React.cloneElement(
-          scrollElement,
-          {
-            ref: SCROLLVIEW_REF,
-            scrollEventThrottle: 16,
-          },
-          bodyComponent,
-          footerSpacer
-        )}
+        {React.cloneElement(scrollElement, {}, bodyComponent, footerSpacer)}
         {stickyHeader}
         {stickyFooter}
       </View>
@@ -88,8 +82,7 @@ class StickyHeaderFooterScrollView extends Component {
             });
             this._bodyOffsetTop = height;
           }
-        }}
-      >
+        }}>
         {renderStickyHeader()}
       </View>
     );
@@ -108,16 +101,21 @@ class StickyHeaderFooterScrollView extends Component {
           const { nativeEvent: { layout: { height } } } = e;
           const footerSpacerHeight = Math.max(
             0,
-            window.height - this._bodyOffsetBottom - this._bodyOffsetTop - height
+            window.height -
+              this._bodyOffsetBottom -
+              this._bodyOffsetTop -
+              height
           );
-          if (this._footerSpacerHeight != footerSpacerHeight) {
+          if (
+            !!this._footerSpacerComponent &&
+            this._footerSpacerHeight != footerSpacerHeight
+          ) {
             this._footerSpacerComponent.setNativeProps({
               style: { height: footerSpacerHeight },
             });
-            this._footerSpacerHeight = footerSpacerHeight
+            this._footerSpacerHeight = footerSpacerHeight;
           }
-        }}
-      >
+        }}>
         {children}
       </View>
     );
@@ -151,13 +149,11 @@ class StickyHeaderFooterScrollView extends Component {
             });
             this._bodyOffsetBottom = height;
           }
-        }}
-      >
+        }}>
         {renderStickyFooter()}
       </View>
     );
   }
-
 }
 
 StickyHeaderFooterScrollView.propTypes = propTypes;
