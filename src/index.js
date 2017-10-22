@@ -2,22 +2,27 @@
  * @Author: Roy Lu 卢骋震 <roycclu>
  * @Date:   2017-05-21T11:55:17+08:00
  * @Last modified by:   roycclu
- * @Last modified time: 2017-07-26T23:27:18+08:00
+ * @Last modified time: 2017-10-22T23:27:18+08:00
  */
 
-import React, { Component } from 'react';
-import { Dimensions, View, ViewPropTypes, ScrollView } from 'react-native';
+import React, { Component } from "react";
+import { Dimensions, View, ViewPropTypes, ScrollView } from "react-native";
+import { StyleObj } from "react-native/Libraries/StyleSheet/StyleSheetTypes";
+import PropTypes from "prop-types";
 
-const { bool, func, number, string } = React.PropTypes;
+const { bool, func, number, string } = PropTypes;
 
-const window = Dimensions.get('window');
+const WINDOW = Dimensions.get("window");
 
-const SCROLLVIEW_REF = 'ScrollView';
+const SCROLLVIEW_REF = "ScrollView";
 
 // Properties accepted by `stickyHeaderScrollView`.
 const propTypes = {
   renderStickyHeader: func,
   renderStickyFooter: func,
+  additionalHeightReserve: number,
+  makeScrollable: bool,
+  fitToScreen: bool,
   contentBackgroundColor: string,
   contentContainerStyle: ViewPropTypes.style,
 };
@@ -35,43 +40,61 @@ class StickyHeaderFooterScrollView extends Component {
     const {
       renderStickyHeader,
       renderStickyFooter,
+      additionalHeightReserve,
       makeScrollable,
+      fitToScreen,
       contentBackgroundColor,
       contentContainerStyle,
       children,
     } = this.props;
 
-    const stickyHeader = this._renderStickyHeader(renderStickyHeader, {});
+    const stickyHeader = this._renderStickyHeader(renderStickyHeader, {
+      contentBackgroundColor,
+    });
 
-    const scrollElement = makeScrollable
-      ? <ScrollView {...this.props} />
-      : <View {...this.props} />;
+    const scrollElement = makeScrollable ? (
+      <ScrollView {...this.props} />
+    ) : (
+      <View {...this.props} />
+    );
 
-    const bodyComponent = this._wrapChildren(children, {});
+    const bodyComponent = this._wrapChildren(children, {
+      contentBackgroundColor,
+      contentContainerStyle,
+      additionalHeightReserve,
+    });
 
-    const footerSpacer = makeScrollable
-      ? this._renderFooterSpacer({ contentBackgroundColor })
-      : <View />;
+    const footerSpacer = fitToScreen ? (
+      this._renderFooterSpacer({ contentBackgroundColor })
+    ) : (
+      <View />
+    );
 
     const stickyFooter = this._renderStickyFooter(renderStickyFooter, {});
 
     return (
       <View>
-        {React.cloneElement(scrollElement, {}, bodyComponent, footerSpacer)}
+        {React.cloneElement(
+          scrollElement,
+          { backgroundColor: contentBackgroundColor },
+          bodyComponent,
+          footerSpacer
+        )}
         {stickyHeader}
         {stickyFooter}
       </View>
     );
   }
 
-  _renderStickyHeader(renderStickyHeader) {
+  _renderStickyHeader(renderStickyHeader, { contentBackgroundColor }) {
     return (
       <View
         style={[
           {
-            position: 'absolute',
+            position: "absolute",
             top: 0,
-            width: Dimensions.get('window').width,
+            width: Dimensions.get("window").width,
+            backgroundColor: contentBackgroundColor,
           },
         ]}
         onLayout={e => {
@@ -88,7 +111,10 @@ class StickyHeaderFooterScrollView extends Component {
     );
   }
 
-  _wrapChildren(children, { contentBackgroundColor, contentContainerStyle }) {
+  _wrapChildren(
+    children,
+    { contentBackgroundColor, contentContainerStyle, additionalHeightReserve }
+  ) {
     const containerStyles = [{ backgroundColor: contentBackgroundColor }];
 
     if (contentContainerStyle) containerStyles.push(contentContainerStyle);
@@ -101,17 +127,11 @@ class StickyHeaderFooterScrollView extends Component {
           const { nativeEvent: { layout: { height } } } = e;
           const footerSpacerHeight = Math.max(
             0,
-            window.height -
-              this._bodyOffsetBottom -
-              this._bodyOffsetTop -
-              height
+            WINDOW.height - this._bodyOffsetBottom - this._bodyOffsetTop - height
           );
-          if (
-            !!this._footerSpacerComponent &&
-            this._footerSpacerHeight != footerSpacerHeight
-          ) {
+          if (!!this._footerSpacerComponent && this._footerSpacerHeight != footerSpacerHeight) {
             this._footerSpacerComponent.setNativeProps({
-              style: { height: footerSpacerHeight },
+              style: { height: footerSpacerHeight - additionalHeightReserve },
             });
             this._footerSpacerHeight = footerSpacerHeight;
           }
@@ -136,9 +156,9 @@ class StickyHeaderFooterScrollView extends Component {
       <View
         style={[
           {
-            position: 'absolute',
+            position: "absolute",
             bottom: 0,
-            width: Dimensions.get('window').width,
+            width: Dimensions.get("window").width,
           },
         ]}
         onLayout={e => {
@@ -159,11 +179,13 @@ class StickyHeaderFooterScrollView extends Component {
 StickyHeaderFooterScrollView.propTypes = propTypes;
 
 StickyHeaderFooterScrollView.defaultProps = {
-  renderStickyHeader: null,
-  renderStickyFooter: null,
+  renderStickyHeader: () => {},
+  renderStickyFooter: () => {},
+  additionalHeightReserve: 0,
   makeScrollable: false,
+  fitToScreen: true,
   contentContainerStyle: null,
-  contentBackgroundColor: 'transparent',
+  contentBackgroundColor: "transparent",
 };
 
 module.exports = StickyHeaderFooterScrollView;

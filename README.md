@@ -59,9 +59,12 @@ render() {
 |---|---|---|
 |**`renderStickyHeader`**|A renderable function for the sticky header. |`null`|
 |**`renderStickyFooter`**|A renderable function for the sticky footer. |`null`|
-|**`contentBackgroundColor`**|Background color of the main component. |`transparent`|
-|**`contentContainerStyle`**|Any style prop to pass to the body. |`null`|
+|**`additionalHeightReserve`**|A number of pixels to adjust for height taken out of screen by top or bottom navigation bars. |`0`|
 |**`makeScrollable`**|Set true to make the component scrollable. (Do not set true if the input is a listview or flatlist) |`false`|
+|**`fitToScreen`**|Whether to fill in space when children height is shorter than visible height. |`true`|
+|**`contentContainerStyle`**|Any style prop to pass to the body. |`null`|
+|**`contentBackgroundColor`**|Background color of the main component. |`transparent`|
+
 
 ## Example
 
@@ -74,6 +77,10 @@ render() {
 `react-native run-ios` or `react-native run-android`
 
 ## Latest changes
+
+### 3.0.0
+
+- Default from making scrollable to fitting children to screen. Set prop makeScrollable to true for original behavior.
 
 ### 2.0.7
 
