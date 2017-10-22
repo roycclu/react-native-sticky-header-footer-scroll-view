@@ -24,7 +24,6 @@ class App extends Component {
           <View
             style={{
               height: 80,
-              flex: 1,
               alignItems: "center",
               justifyContent: "center",
               backgroundColor: "#223A5E",
@@ -38,7 +37,6 @@ class App extends Component {
           <View
             style={{
               height: 60,
-              flex: 1,
               alignItems: "center",
               justifyContent: "center",
               backgroundColor: "#223A5E",
@@ -47,8 +45,7 @@ class App extends Component {
             }}>
             <Text style={{ color: "white", fontSize: 18 }}>{`Sticky footer`}</Text>
           </View>
-        )}
-        makeScrollable={true}>
+        )}>
         <View
           style={{
             height: 600,

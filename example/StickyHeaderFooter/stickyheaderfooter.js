@@ -182,7 +182,7 @@ StickyHeaderFooterScrollView.defaultProps = {
   renderStickyHeader: () => {},
   renderStickyFooter: () => {},
   additionalHeightReserve: 0,
-  makeScrollable: false,
+  makeScrollable: true,
   fitToScreen: true,
   contentContainerStyle: null,
   contentBackgroundColor: "transparent",

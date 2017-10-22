@@ -1,25 +1,26 @@
 {
-	"name": "StickyHeaderFooter",
-	"version": "0.0.1",
-	"private": false,
-	"scripts": {
-		"start": "node node_modules/react-native/local-cli/cli.js start",
-		"test": "jest"
-	},
-	"dependencies": {
-		"prop-types": "^15.6.0",
-		"react": "16.0.0-alpha.6",
-		"react-native": "0.44.0",
-		"react-native-sticky-header-footer-scroll-view": "../.."
-	},
-	"devDependencies": {
-		"babel-jest": "20.0.3",
-		"babel-preset-react-native": "2.1.0",
-		"jest": "20.0.0",
-		"react-test-renderer": "16.0.0-alpha.6"
-	},
-	"jest": {
-		"preset": "react-native"
-	},
-	"license": "MIT"
+  "name": "StickyHeaderFooter",
+  "version": "0.0.1",
+  "private": false,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "reset-cache": "react-native start --reset-cache",
+    "clear-build": " watchman watch-del-all && rm -rf node_modules && yarn && npm run reset-cache",
+    "test": "jest"
+  },
+  "dependencies": {
+    "react": "16.0.0-beta.5",
+    "react-native": "0.49.0",
+    "react-native-sticky-header-footer-scroll-view": "../.."
+  },
+  "devDependencies": {
+    "babel-jest": "20.0.3",
+    "babel-preset-react-native": "2.1.0",
+    "jest": "20.0.0",
+    "react-test-renderer": "16.0.0-alpha.6"
+  },
+  "jest": {
+    "preset": "react-native"
+  },
+  "license": "MIT"
 }

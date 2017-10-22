@@ -78,9 +78,9 @@ render() {
 
 ## Latest changes
 
-### 3.0.0
+### 2.1.0
 
-- Default from making scrollable to fitting children to screen. Set prop makeScrollable to true for original behavior.
+- Upgrades to React 16.0.0-beta.5 and RN 0.49.0
 
 ### 2.0.7
 
